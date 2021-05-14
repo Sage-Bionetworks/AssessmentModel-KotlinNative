@@ -4,12 +4,13 @@ plugins {
     id( "com.android.library")
     id("org.jetbrains.kotlin.multiplatform")
     id("org.jetbrains.kotlin.plugin.serialization")
-    id("com.github.dcendents.android-maven")
+//    id("com.github.dcendents.android-maven")
     id ("maven-publish")
     id("org.jetbrains.dokka")
 }
 
 android {
+
     compileSdkVersion(29)
     defaultConfig {
         minSdkVersion(19)
@@ -69,7 +70,9 @@ kotlin {
    sourceSets {
       commonMain {
          dependencies {
-             api ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
+             api (Libs.KotlinX.serialization)
+             implementation(Libs.KotlinX.coroutines)
+
          }
       }
       commonTest {
@@ -113,7 +116,7 @@ kotlin {
 
 
 
-apply("../config/artifact-deploy.gradle")
+//apply("../config/artifact-deploy.gradle")
 
 //TODO: syoung 03/24/2020 Figure out why getting a warning that this was already added.
 //tasks.register("iosTest")  {

@@ -1,15 +1,15 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.multiplatform")
-    id("kotlin-android-extensions")
     id("org.jetbrains.dokka")
 }
 
 android {
+
     compileSdkVersion(29)
     defaultConfig {
         applicationId = "org.sagebionetworks.assessmentmodel.sampleapp"
-        minSdkVersion(19)
+        minSdkVersion(21)
         targetSdkVersion(29)
         versionCode = 1
         versionName = "1.0"
@@ -41,6 +41,7 @@ android {
     }
 
     testOptions.unitTests.isIncludeAndroidResources = true
+
 }
 
 kotlin {
@@ -51,13 +52,13 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
     implementation(project(":presentation"))
 
-    implementation("com.google.android.material:material:1.1.0")
-    implementation("androidx.appcompat:appcompat:1.1.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+    implementation("com.google.android.material:material:1.3.0")
+    implementation("androidx.appcompat:appcompat:1.2.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
     implementation("org.koin:koin-android:2.2.2")
 
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.1")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
-    testImplementation("junit:junit:4.12")
+    testImplementation("junit:junit:4.13.2")
 }

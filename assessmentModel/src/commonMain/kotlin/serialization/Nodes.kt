@@ -1,27 +1,58 @@
 
 package org.sagebionetworks.assessmentmodel.serialization
 
+import kotlin.collections.set
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonNull
 import kotlinx.serialization.json.JsonPrimitive
-import kotlinx.serialization.modules.*
+import kotlinx.serialization.modules.SerializersModule
+import kotlinx.serialization.modules.polymorphic
 import kotlinx.serialization.modules.subclass
-import org.sagebionetworks.assessmentmodel.*
+import org.sagebionetworks.assessmentmodel.ActiveStep
+import org.sagebionetworks.assessmentmodel.ActiveStepCommand
+import org.sagebionetworks.assessmentmodel.Assessment
+import org.sagebionetworks.assessmentmodel.AssessmentInfo
+import org.sagebionetworks.assessmentmodel.AssessmentPlaceholder
+import org.sagebionetworks.assessmentmodel.AssessmentRegistryProvider
+import org.sagebionetworks.assessmentmodel.AssessmentResult
+import org.sagebionetworks.assessmentmodel.AsyncActionConfiguration
+import org.sagebionetworks.assessmentmodel.AsyncActionContainer
+import org.sagebionetworks.assessmentmodel.ButtonAction
+import org.sagebionetworks.assessmentmodel.ButtonActionInfo
+import org.sagebionetworks.assessmentmodel.ContentNode
+import org.sagebionetworks.assessmentmodel.CountdownStep
+import org.sagebionetworks.assessmentmodel.FormStep
+import org.sagebionetworks.assessmentmodel.ImageInfo
+import org.sagebionetworks.assessmentmodel.InstructionStep
+import org.sagebionetworks.assessmentmodel.ModuleInfo
+import org.sagebionetworks.assessmentmodel.Node
+import org.sagebionetworks.assessmentmodel.NodeContainer
+import org.sagebionetworks.assessmentmodel.OverviewStep
+import org.sagebionetworks.assessmentmodel.PermissionInfo
+import org.sagebionetworks.assessmentmodel.PermissionType
+import org.sagebionetworks.assessmentmodel.ResultSummaryStep
+import org.sagebionetworks.assessmentmodel.Section
+import org.sagebionetworks.assessmentmodel.SpokenInstructionTiming
+import org.sagebionetworks.assessmentmodel.Step
+import org.sagebionetworks.assessmentmodel.TransformableAssessment
+import org.sagebionetworks.assessmentmodel.TransformableNode
 import org.sagebionetworks.assessmentmodel.navigation.DirectNavigationRule
 import org.sagebionetworks.assessmentmodel.navigation.IdentifierPath
 import org.sagebionetworks.assessmentmodel.navigation.SurveyNavigationRule
 import org.sagebionetworks.assessmentmodel.resourcemanagement.copyResourceInfo
-import org.sagebionetworks.assessmentmodel.survey.*
 import org.sagebionetworks.assessmentmodel.survey.BaseType
-import kotlin.collections.List
-import kotlin.collections.Map
-import kotlin.collections.listOf
-import kotlin.collections.map
-import kotlin.collections.mapOf
-import kotlin.collections.set
-import kotlin.collections.toMutableMap
+import org.sagebionetworks.assessmentmodel.survey.ChoiceQuestion
+import org.sagebionetworks.assessmentmodel.survey.ComboBoxQuestion
+import org.sagebionetworks.assessmentmodel.survey.ComparableSurveyRule
+import org.sagebionetworks.assessmentmodel.survey.InputItem
+import org.sagebionetworks.assessmentmodel.survey.MultipleInputQuestion
+import org.sagebionetworks.assessmentmodel.survey.Question
+import org.sagebionetworks.assessmentmodel.survey.SimpleQuestion
+import org.sagebionetworks.assessmentmodel.survey.SkipCheckboxInputItem
+import org.sagebionetworks.assessmentmodel.survey.SurveyRuleOperator
+import org.sagebionetworks.assessmentmodel.survey.UIHint
 
 val nodeSerializersModule = SerializersModule {
     polymorphic(Node::class) {
@@ -395,6 +426,8 @@ abstract class BaseActiveStepObject : StepObject(), ActiveStep {
     override var shouldEndOnInterrupt: Boolean = false
     @SerialName("image")
     override var imageInfo: ImageInfo? = null
+
+    // TODO: fix java.lang.IllegalAccessError
     @SerialName("commands")
     private var commandStrings: Set<String> = setOf()
 
