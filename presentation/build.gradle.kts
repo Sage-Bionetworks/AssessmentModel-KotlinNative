@@ -51,6 +51,7 @@ dependencies {
     implementation("androidx.core:core-ktx:1.2.0")
     implementation("io.insert-koin:koin-android:3.0.1")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.2.0")
   
     testImplementation("junit:junit:4.12")
     androidTestImplementation("androidx.test.ext:junit:1.1.1")
@@ -83,5 +84,6 @@ publishing {
                 password = System.getenv("artifactoryPwd")
             }
         }
+        mavenCentral()
     }
 }

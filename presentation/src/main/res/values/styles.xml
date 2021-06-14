@@ -10,5 +10,9 @@
         <item name="android:layout_margin">10dp</item>
     </style>
 
+    <style name="EditTextThemeOverlay" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@android:color/holo_blue_light</item>
+    </style>
+
 
 </resources>

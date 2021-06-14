@@ -6,5 +6,8 @@
     <string name="testing">testing button</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="month">month</string>
+    <string name="date">date</string>
+    <string name="year">year</string>
+    <string name="approximate_date">Approximate date:</string>
 </resources>

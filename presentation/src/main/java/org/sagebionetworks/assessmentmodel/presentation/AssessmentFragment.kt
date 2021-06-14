@@ -14,11 +14,7 @@ import org.sagebionetworks.assessmentmodel.InstructionStep
 import org.sagebionetworks.assessmentmodel.Step
 import org.sagebionetworks.assessmentmodel.navigation.BranchNodeState
 import org.sagebionetworks.assessmentmodel.navigation.NavigationPoint
-import org.sagebionetworks.assessmentmodel.survey.CheckboxInputItem
-import org.sagebionetworks.assessmentmodel.survey.ChoiceQuestion
-import org.sagebionetworks.assessmentmodel.survey.KeyboardTextInputItem
-import org.sagebionetworks.assessmentmodel.survey.MultipleInputQuestion
-import org.sagebionetworks.assessmentmodel.survey.SimpleQuestion
+import org.sagebionetworks.assessmentmodel.survey.*
 import org.w3c.dom.Text
 
 open class AssessmentFragment : Fragment() {
@@ -128,6 +124,8 @@ open class AssessmentFragment : Fragment() {
             is SimpleQuestion -> {
                 if (step.inputItem is CheckboxInputItem) {
                     return CheckboxFragment()
+                } else if (step.inputItem is DateTimeInputItem) {
+                    return DateTimeInputFragment()
                 } else if (step.inputItem is KeyboardTextInputItem<*>) {
                     return TextQuestionStepFragment()
                 }
