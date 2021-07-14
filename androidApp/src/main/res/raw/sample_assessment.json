@@ -77,6 +77,22 @@
       "skipCheckbox":{"type": "skipCheckbox", "fieldLabel": "No answer"}
     },
     {
+      "identifier": "dateTimeInputQuestion",
+      "type": "simpleQuestion",
+      "title": "Infected with Covid-19?",
+      "subtitle": "Enter date of infection",
+      "detail": "Some text. This is a test.",
+      "footnote": "This is a footnote.",
+      "image"  : {    "type" : "animated",
+        "imageNames" : ["foo1", "foo2", "foo3", "foo4"],
+        "placementType" : "topBackground",
+        "animationDuration" : 2
+      },
+      "optional": true,
+      "inputItem":{"type": "date", "identifier": "checkboxQuestionResult", "fieldLabel": "Check for Yes"},
+      "skipCheckbox":{"type": "skipCheckbox", "fieldLabel": "No answer"}
+    },
+    {
       "identifier": "stringQuestion",
       "type": "simpleQuestion",
       "title": "What symptoms?",
